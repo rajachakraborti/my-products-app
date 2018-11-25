@@ -9,14 +9,16 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductsComponent } from './products.component';
 import { ProductStartComponent } from './product-start/product-start.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { PaginationComponent } from '../core/pagination/pagination.component';
 
 @NgModule({
   declarations: [
-    ProductDetailComponent, 
-    ProductEditComponent, 
-    ProductListComponent, 
-    ProductItemComponent, 
-    ProductsComponent, 
+    ProductDetailComponent,
+    ProductEditComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductsComponent,
+    PaginationComponent,
     ProductStartComponent],
   imports: [
     CommonModule,

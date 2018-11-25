@@ -1,4 +1,4 @@
-import { Component, OnInit,  Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
 
 import { Product } from './../product.model';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
@@ -10,25 +10,37 @@ import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit, OnChanges {
   @Input('products') products: Product[];
-  constructor(private _route: ActivatedRoute, private _router: Router) { }
+  currentPage = 1;
+  productSnapShot: Product[]
+  totalRecords = 0;
+  pageSize = 5;
+  hidePagination = false;
+
+
+  constructor(private _route: ActivatedRoute,
+    private cdRef: ChangeDetectorRef,
+    private _router: Router) { }
 
   ngOnInit() {
-          /*this.products = this._route.snapshot.data.pageData;
-          // when child is changing the name or any data,
-          // the parent should pick up the chnange.
-          this.subscription.push(this._route.firstChild.paramMap.subscribe(
-            (param: ParamMap) => {
-              this.subscription.push(this.productService.getProducts()
-                  .subscribe(x => this.products = x));
-            }
-          ))*/
+    this.totalRecords = this.products.length;
+    this.productSnapShot = this.products.slice(0, this.pageSize);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.totalRecords = this.products.length;
+    this.productSnapShot = this.products.slice(0, this.pageSize);
+    this.currentPage = 1;
+  }
   onNewProduct() {
     this._router.navigate(['new'], { relativeTo: this._route });
   }
 
-
+  pageChanged(valPassed: number) {
+    this.currentPage = valPassed;
+    const start = this.currentPage * this.pageSize - 1;
+    const last = (this.currentPage + 1) * this.pageSize - 1
+    this.productSnapShot = this.products.slice(start, last);
+  }
 }

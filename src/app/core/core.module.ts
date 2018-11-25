@@ -12,8 +12,6 @@ import { AuthService } from '../auth/auth.service';
 import { ProductService } from '../products/products.service';
 import { DropdownDirective } from './dropdown.directive';
 import { CategoryService } from '../category/category.service';
-import { ProductEditResolver } from '../products/resolvers/product-edit.resolver';;
-
 @NgModule({
   declarations: [
     HeaderComponent,

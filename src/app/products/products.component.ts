@@ -33,7 +33,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       })
     ).subscribe(() => {
       this.subscription.push(this.productService.getProducts()
-        .subscribe(elem => this.products = elem));
+        .subscribe(elem => {
+          this.products = elem;
+        }));
     });
   }
 
