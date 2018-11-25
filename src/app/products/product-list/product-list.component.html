@@ -8,5 +8,7 @@
   <div class="col-xs-12">
     <app-product-item *ngFor="let product of productSnapShot; let i = index" [product]="product" [index]="i"></app-product-item>
   </div>
-  <app-pagination  [hidden]="!products" [totalItems]="totalRecords" [pageSize]="pageSize" (pageChanged)="pageChanged($event)"></app-pagination>
+  <div class="col-xs-12">
+    <app-pagination [hidden]="!products" [totalItems]="totalRecords" [pageSize]="pageSize" (pageChanged)="pageChanged($event)"></app-pagination>
+  </div>
 </div>
