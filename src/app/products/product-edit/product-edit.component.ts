@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Product } from '../product.model';
 import { Category } from 'src/app/category/category.model';
@@ -93,12 +93,19 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       Url: this.productEditForm.get('url').value,
       Description: this.productEditForm.get('description').value,
       CategoryIds: this.product.$categories.filter(elem => elem.$checked).map(elem => elem.$CategoryId)
-    }
+    };
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        "reload": "true"
+      }
+    };
+
     if (this.editMode) {
       this.subscription.push(this.productService.update(this.product.$id, payLoad)
         .subscribe((resp) => {
           if (resp.success) {
-            this.router.navigate(['/products', this.product.$id]);
+            this.router.navigate(['/products', this.product.$id], navigationExtras);
           } else {
             // show toast
           }
@@ -107,7 +114,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       this.subscription.push(this.productService.save(payLoad)
         .subscribe((resp) => {
           if (resp.success) {
-            this.router.navigate(['/products']);
+            this.router.navigate(['/products'], navigationExtras);
           }
         }));
     }
