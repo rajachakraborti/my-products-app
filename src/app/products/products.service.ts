@@ -57,7 +57,7 @@ export class ProductService extends BaseApiService {
     return this.http.post(`${baseUrl}${this.productsBaseUrl}`,
       payload, { observe: 'response' })
       .pipe(map(x => {
-        return {success: x.status === 200 ?  true : false}
+        return {success: x.status === 201 ?  true : false}
       }),
         catchError(this.handleError))
   }

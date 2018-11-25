@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <img [src]="product.url" alt="{{ product.name }}" class="img-responsive" style="max-height: 300px;">
+    <img [src]="product.$url" alt="{{ product.$name }}" class="img-thumbnail" style="max-height: 300px;">
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{ product.name }}</h1>
+    <h1>{{ product.$name }}</h1>
   </div>
 </div>
 <div class="row">
@@ -17,16 +17,17 @@
     </div>
   </div>
 </div>
+<hr>
 <div class="row">
   <div class="col-xs-12">
-    {{ product.description }}
+    <legend>{{ product.$description }} </legend>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let category of product.categories; let i =index">
-        {{ category.Name }}
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" [ngClass]="{'card-header': i % 2 === 0}" *ngFor="let category of product.$categories; let i =index">
+        {{ category.$Name }}
       </li>
     </ul>
   </div>

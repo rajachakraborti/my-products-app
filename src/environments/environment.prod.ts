@@ -1,4 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://gdm-interview-api.azurewebsites.net/api/v1'
 };
 

@@ -9,7 +9,7 @@ import { Subscription} from 'rxjs'
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit , OnDestroy{
-  private product: Product;
+  public product: Product;
   private subscription : Subscription[]= [];
 
   constructor(private _route: ActivatedRoute,

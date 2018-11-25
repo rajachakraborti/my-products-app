@@ -13,7 +13,7 @@ import { ProductNewResolver} from '../products/resolvers/product-new.resolver';
 
 const productsRoutes: Routes = [
   {
-    path: '', component: ProductsComponent, children: [
+    path: '', component: ProductsComponent,canActivate: [AuthGuard], children: [
       { path: '', component: ProductStartComponent },
       {
         path: 'new', component: ProductEditComponent, canActivate: [AuthGuard], resolve: {
@@ -21,7 +21,7 @@ const productsRoutes: Routes = [
         }
       },
       {
-        path: ':id', component: ProductDetailComponent, resolve: {
+        path: ':id', component: ProductDetailComponent, canActivate: [AuthGuard], resolve: {
           pageData: ProductDetailResolver
         }
       },
