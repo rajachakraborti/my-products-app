@@ -4,8 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoryListComponent } from './category-list/category-list.component';
-import { CategoryComponent } from './category-list/category/category.component';
 import { AuthModule } from './auth/auth.module'
 import { CoreModule } from './core/core.module';
 

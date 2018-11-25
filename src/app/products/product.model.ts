@@ -1,13 +1,14 @@
 // will change to fluent builder pattern
+import {Category} from './../category/category.model';
 export class Product {
     private name: string;
     private id: number;
     private description: string;
     private url: string;
-    private categories: number[];
+    private categories: Category[] = [];
 
 
-	constructor(id) {
+	constructor(id? : number) {
         this.id = id;
 	}
     
@@ -67,8 +68,8 @@ export class Product {
      * Setter $categories
      * @param {[]} value
      */
-	public addCategories(value: number) {
-        this.categories.push(value);
+	public addCategories(value: Category[]) {
+        this.categories = this.categories.concat(value);
         return this;
 	}
 
@@ -84,9 +85,9 @@ export class Product {
 
     /**
      * Getter $categories
-     * @return {number[]}
+     * @return {Category[]}
      */
-	public get $categories(): number[] {
+	public get $categories(): Category[] {
 		return this.categories;
 	}
 

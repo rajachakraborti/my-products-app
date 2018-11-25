@@ -10,11 +10,15 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from '../auth/auth.service';
 import { ProductService } from '../products/products.service';
+import { DropdownDirective } from './dropdown.directive';
+import { CategoryService } from '../category/category.service';
+import { ProductEditResolver } from '../products/resolvers/product-edit.resolver';;
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    DropdownDirective
   ],
   imports: [
     AppRoutingModule,
@@ -23,11 +27,13 @@ import { ProductService } from '../products/products.service';
   ],
   exports: [
     AppRoutingModule,
-    HeaderComponent
+    HeaderComponent,
+    DropdownDirective
   ],
   providers: [
     AuthService,
     ProductService,
+    CategoryService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
   ]

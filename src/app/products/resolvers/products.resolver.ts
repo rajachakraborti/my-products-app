@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
-import { Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product } from '../product.model';
 import { ProductService } from '../products.service';
-import {map, delay, catchError} from 'rxjs/operators';
+import { map, delay, catchError } from 'rxjs/operators';
 
 
 
@@ -21,11 +21,11 @@ export class ProductsResolver implements Resolve<Observable<Product[]>> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product[]> {
     return this.productService.getProducts()
-    .pipe(delay(2000))
-    .pipe(map((x) => {
-      console.log(x);
-      return x;
-    }))
-    .pipe(catchError( error => of([])))
+      .pipe(delay(2000))
+      .pipe(map((x) => {
+        console.log(x);
+        return x;
+      }))
+      .pipe(catchError(error => of([])))
   }
 }
